@@ -221,7 +221,7 @@
                     j = i;
                 }
             }
-            return j + 1;
+            if (length > 0) { return j + 1; } else { return 0 }
         }
 
         HttpGet("https://script.google.com/macros/s/AKfycbz3m8CaYtR9sW7zuCcUyMx4ODhEq3OYKQzTlQa6bfG3tGY-nbGm/exec", html);
@@ -248,7 +248,11 @@
 
             var howManyTables = tableNumber(cupArray.finals);
             tables(howManyTables, "finals");
-
+            if (howManyTables == 0) {
+                document.getElementById("szelesseg").style.width = "320px";
+                document.getElementById("selejtezo").style.width = "320px";
+                document.getElementById("donto_text").style.display = "none";
+            }
 
             var skiper = j;
             var tableId = document.getElementById('kill');
@@ -294,15 +298,15 @@
             </div>
         </div>
 
-        <div class="site-stat-outerbox">
+        <div id="szelesseg" class="site-stat-outerbox">
 
-            <div class="site-stat-inerbox">
+            <div id="selejtezo" class="site-stat-inerbox">
                 <span class="info"> Selejtező:</span>
                 <div id="qualifier"></div>
             </div>
 
             <div class="site-stat-inerbox">
-                <span class="info">Döntő:</span>
+                <span id="donto_text" class="info">Döntő:</span>
                 <div id="finals"></div>
             </div>
             <br style="clear: left;" />
